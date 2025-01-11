@@ -685,6 +685,41 @@ require("lazy").setup({
 				--
 				-- But for many setups, the LSP (`ts_ls`) will work just fine
 				ts_ls = {},
+				eslint = {
+					on_attach = function(client, bufnr)
+						-- Enable formatting
+						client.server_capabilities.documentFormattingProvider = true
+
+						-- Autofix on save
+						vim.api.nvim_create_autocmd("BufWritePre", {
+							buffer = bufnr,
+							command = "EslintFixAll",
+						})
+					end,
+					settings = {
+						-- Format options
+						format = true,
+						-- Working directory mode
+						workingDirectory = { mode = "location" },
+						-- Run eslint when you save the file
+						run = "onSave",
+						-- Code action settings
+						codeAction = {
+							disableRuleComment = {
+								enable = true,
+								location = "separateLine",
+							},
+							showDocumentation = {
+								enable = true,
+							},
+						},
+						-- Enable autofix on save
+						codeActionOnSave = {
+							enable = true,
+							mode = "all",
+						},
+					},
+				},
 				lua_ls = {
 					-- cmd = {...},
 					-- filetypes = { ...},
@@ -750,9 +785,6 @@ require("lazy").setup({
 		opts = {
 			notify_on_error = false,
 			format_on_save = function(bufnr)
-				-- Disable "format_on_save lsp_fallback" for languages that don't
-				-- have a well standardized coding style. You can add additional
-				-- languages here or re-enable it for the disabled ones.
 				local disable_filetypes = { c = true, cpp = true }
 				local lsp_format_opt
 				if disable_filetypes[vim.bo[bufnr].filetype] then
@@ -767,11 +799,17 @@ require("lazy").setup({
 			end,
 			formatters_by_ft = {
 				lua = { "stylua" },
-				-- Conform can also run multiple formatters sequentially
-				-- python = { "isort", "black" },
-				--
-				-- You can use 'stop_after_first' to run the first available formatter from the list
-				-- javascript = { "prettierd", "prettier", stop_after_first = true },
+				javascript = { { "prettierd", "prettier" }, "eslint_d" },
+				typescript = { { "prettierd", "prettier" }, "eslint_d" },
+				javascriptreact = { { "prettierd", "prettier" }, "eslint_d" },
+				typescriptreact = { { "prettierd", "prettier" }, "eslint_d" },
+				svelte = { { "prettierd", "prettier" } },
+				css = { { "prettierd", "prettier" } },
+				html = { { "prettierd", "prettier" } },
+				json = { { "prettierd", "prettier" } },
+				yaml = { { "prettierd", "prettier" } },
+				markdown = { { "prettierd", "prettier" } },
+				graphql = { { "prettierd", "prettier" } },
 			},
 		},
 	},
@@ -1022,6 +1060,49 @@ require("lazy").setup({
 	--  Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
 	--    For additional information, see `:help lazy.nvim-lazy.nvim-structuring-your-plugins`
 	-- { import = 'custom.plugins' },
+	{
+		"neovim/nvim-lspconfig",
+		dependencies = {
+			"jose-elias-alvarez/typescript.nvim",
+		},
+		opts = {
+			servers = {
+				eslint = {
+					settings = {
+						workingDirectory = { mode = "auto" },
+					},
+				},
+			},
+		},
+	},
+	{
+		"mfussenegger/nvim-lint",
+		event = { "BufReadPre", "BufNewFile" },
+		config = function()
+			local lint = require("lint")
+			lint.linters_by_ft = {
+				javascript = { "eslint" },
+				typescript = { "eslint" },
+				javascriptreact = { "eslint" },
+				typescriptreact = { "eslint" },
+				svelte = { "eslint" },
+			}
+
+			-- Lint on save
+			vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+				callback = function()
+					lint.try_lint()
+				end,
+			})
+
+			-- Lint on text change
+			vim.api.nvim_create_autocmd({ "TextChanged" }, {
+				callback = function()
+					lint.try_lint()
+				end,
+			})
+		end,
+	},
 }, {
 	ui = {
 		-- If you are using a Nerd Font: set icons to an empty table which will use the
@@ -1104,3 +1185,4 @@ vim.call("plug#end")
 require("onedark").load()
 vim.cmd([[colorscheme onedark]])
 require("nvim-autopairs").setup({})
+
