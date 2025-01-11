@@ -8,7 +8,7 @@ vim.g.maplocalleader = " "
 vim.g.have_nerd_font = false
 
 -- Initialize core components
-require("core")
+require("core").setup()
 
 -- Initialize plugins
 require("plugins")
