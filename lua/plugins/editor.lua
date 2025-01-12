@@ -27,6 +27,10 @@ return {
 		},
 	},
 	{
+    "windwp/nvim-autopairs",
+    event = "VimEnter",
+  },
+	{
 		"ThePrimeagen/harpoon",
 		branch = "harpoon2",
 		dependencies = { "nvim-lua/plenary.nvim" },
@@ -86,7 +90,6 @@ return {
 			},
 		},
 	},
-
 	{
 		"nvim-neo-tree/neo-tree.nvim",
 		branch = "v3.x",
@@ -134,7 +137,7 @@ return {
 			},
 		},
 	},
-  { -- You can easily change to a different colorscheme.
+	{ -- You can easily change to a different colorscheme.
 		-- Change the name of the colorscheme plugin below, and then
 		-- change the command in the config to whatever the name of that colorscheme is.
 		--
@@ -151,13 +154,13 @@ return {
 			vim.cmd.hi("Comment gui=none")
 		end,
 	},
-  {
+	{
     "folke/todo-comments.nvim",
     event = "VimEnter",
     dependencies = { "nvim-lua/plenary.nvim" },
     opts = { signs = false },
   },
-  { -- Collection of various small independent plugins/modules
+	{ -- Collection of various small independent plugins/modules
 		"echasnovski/mini.nvim",
 		config = function()
 			-- Better Around/Inside textobjects
@@ -194,8 +197,4 @@ return {
 			--  Check out: https://github.com/echasnovski/mini.nvim
 		end,
 	},
-  {
-    "windwp/nvim-autopairs",
-    event = "VimEnter",
-  },
 }
