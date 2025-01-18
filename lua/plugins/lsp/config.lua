@@ -231,7 +231,22 @@ return {
             },
           },
         },
+        terraformls = {
+          filetypes = { "terraform", "tf", "terraform-vars" },
+          settings = {
+            terraform = {
+              -- Enable format on save
+              format = {
+                enable = true,
+                formatOnSave = true,
+              },
+              -- Enable terraform validate on save
+              validateOnSave = true,
+            },
+          },
+        },
       }
+    
 
       -- Ensure the servers and tools above are installed
       --  To check the current status of installed tools and/or manually install
@@ -247,6 +262,8 @@ return {
       vim.list_extend(ensure_installed, {
         "stylua", -- Used to format Lua code
         "pyright",
+        "terraform-ls", -- Terraform LSP
+        "tflint",      -- Terraform linter
       })
       require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
