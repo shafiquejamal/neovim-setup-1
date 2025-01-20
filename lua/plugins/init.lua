@@ -22,14 +22,14 @@ vim.opt.rtp:prepend(lazypath)
 --
 -- NOTE: Here is where you install your plugins.
 require("lazy").setup({
-    { import = "plugins.telescope" },
-    { import = "plugins.lsp" },
-    { import = "plugins.format" },
-    { import = "plugins.completion" },
-    { import = "plugins.treesitter" },
-    { import = "plugins.editor" },
+	{ import = "plugins.telescope" },
+	{ import = "plugins.lsp" },
+	{ import = "plugins.format" },
+	{ import = "plugins.completion" },
+	{ import = "plugins.treesitter" },
+	{ import = "plugins.editor" },
 
-    -- The following two comments only work if you have downloaded the kickstart repo, not just copy pasted the
+	-- The following two comments only work if you have downloaded the kickstart repo, not just copy pasted the
 	-- init.lua. If you want these files, they are in the repository, so you can just download them and
 	-- place them in the correct locations.
 
@@ -52,25 +52,25 @@ require("lazy").setup({
 	--    For additional information, see `:help lazy.nvim-lazy.nvim-structuring-your-plugins`
 	-- { import = 'custom.plugins' },
 }, {
-    ui = {
+	ui = {
 		-- If you are using a Nerd Font: set icons to an empty table which will use the
 		-- default lazy.nvim defined Nerd Font icons, otherwise define a unicode icons table
-        icons = vim.g.have_nerd_font and {} or {
-            cmd = "⌘",
-            config = "🛠",
-            event = "📅",
-            ft = "📂",
-            init = "⚙",
-            keys = "🗝",
-            plugin = "🔌",
-            runtime = "💻",
-            require = "🌙",
-            source = "📄",
-            start = "🚀",
-            task = "📌",
-            lazy = "💤 ",
-        },
-    },
+		icons = vim.g.have_nerd_font and {} or {
+			cmd = "⌘",
+			config = "🛠",
+			event = "📅",
+			ft = "📂",
+			init = "⚙",
+			keys = "🗝",
+			plugin = "🔌",
+			runtime = "💻",
+			require = "🌙",
+			source = "📄",
+			start = "🚀",
+			task = "📌",
+			lazy = "💤 ",
+		},
+	},
 })
 
 -- The line beneath this is called `modeline`. See `:help modeline`
@@ -125,11 +125,11 @@ Plug("tpope/vim-fireplace", { ["for"] = "clojure" })
 Plug("~/my-prototype-plugin")
 
 Plug("ThePrimeagen/vim-be-good")
-Plug("navarasu/onedark.nvim")
+-- Plug("navarasu/onedark.nvim")
 
 vim.call("plug#end")
 
 -- Lua
-require("onedark").load()
-vim.cmd([[colorscheme onedark]])
+-- require("onedark").load()
+-- vim.cmd([[colorscheme onedark]])
 require("nvim-autopairs").setup({})
