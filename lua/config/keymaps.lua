@@ -84,16 +84,15 @@ vim.keymap.set(
 vim.keymap.set("n", "<C-n>", ":Neotree filesystem reveal left<CR>", {})
 
 -- delete without copying into register
-vim.keymap.set({ "n", "v" }, "X", '"_X')
-vim.keymap.set({ "n", "v" }, "x", '"_x')
-vim.keymap.set({ "n", "v" }, "D", '"_D')
-vim.keymap.set({ "n", "v" }, "d", '"_d')
+vim.keymap.set({ "n", "v" }, "X", "\"_X")
+vim.keymap.set({ "n", "v" }, "x", "\"_x")
+vim.keymap.set({ "n", "v" }, "D", "\"_D")
+vim.keymap.set({ "n", "v" }, "d", "\"_d")
 
 -- https://www.reddit.com/r/neovim/comments/v7s1ts/how_do_i_avoid_replacing_the_content_of_my/
 vim.keymap.set(
 	"x",
 	"p",
-	function() return 'pgv"' .. vim.v.register .. "y" end,
+	function() return "pgv\"" .. vim.v.register .. "y" end,
 	{ remap = false, expr = true }
 )
-
