@@ -64,6 +64,4 @@ opt.splitbelow = true
 --  Schedule the setting after `UiEnter` because it can increase startup-time.
 --  Remove this option if you want your OS clipboard to remain independent.
 --  See `:help 'clipboard'`
-vim.schedule(function()
-    opt.clipboard = "unnamedplus"
-end)
+vim.schedule(function() opt.clipboard = "unnamedplus" end)
