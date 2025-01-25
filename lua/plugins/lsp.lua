@@ -1,29 +1,70 @@
 -- TODO: properly configure LSP config
 return {
-	"neovim/nvim-lspconfig",
-	enabled = false,
-	dependencies = {
-		"williamboman/mason-lspconfig.nvim",
-		"WhoIsSethDaniel/mason-tool-installer.nvim",
-		{ "williamboman/mason.nvim", config = true },
+	{
+		-- Installer for lsp,linter,formatter
+		-- Use :Mason for manual installation of lsp, liter, and formatter
+		"williamboman/mason.nvim",
+		cmd = {
+			"Mason",
+			"MasonLog",
+			"MasonUpdate",
+			"MasonInstall",
+			"MasonUninstall",
+			"MasonUninstallAll",
+		},
 	},
-	event = { "BufReadPost", "BufWritePost", "BufNewFile" },
-	config = true,
-	-- [[
-	--
-	-- language_servers:
-	--      - lua_ls
-	--      - pyright
-	--      - rust_analyzer
-	--      - sqlls
-	--      - ts_ls
-	--      - eslint
-	--      - terraformls
-	--
-	-- formatters:
-	--      - stylua
-	--
-	-- linters:
-	--      - tflint
-	-- ]]
+	{
+		-- Automatic installer for linters, formatters, and lsp's
+		-- The installation of tools in here run only once  (when running `nvim` for the first time)
+		"WhoIsSethDaniel/mason-tool-installer.nvim",
+		dependencies = { "williamboman/mason.nvim", config = true },
+		build = ":MasonToolsUpdate",
+		cmd = { "MasonToolsInstall", "MasonToolsUpdate", "MasonToolsClean" },
+		config = function()
+			require("mason-tool-installer").setup {
+				ensure_installed = {
+					-- LANGUAGE SERVERS
+					"sqlls",
+					"pyright",
+					"terraform-ls",
+					"rust-analyzer",
+					"lua-language-server",
+					"typescript-language-server",
+
+					-- LINTERS
+					"eslint",
+					"tflint",
+					"shellcheck",
+
+					-- FORMATTERS
+					"shfmt",
+					"stylua",
+					"prettier",
+				},
+			}
+		end,
+	},
+	{
+		-- Neovim Lsp Client
+		"neovim/nvim-lspconfig",
+		enabled = true,
+		dependencies = {
+			"hrsh7th/cmp-nvim-lsp",
+			"williamboman/mason-lspconfig.nvim",
+		},
+		event = { "BufReadPost", "BufWritePost", "BufNewFile" },
+		config = function()
+			local capabilities = vim.lsp.protocol.make_client_capabilities()
+			capabilities =
+				require("cmp_nvim_lsp").default_capabilities(capabilities)
+
+			require("mason-lspconfig").setup_handlers {
+				function(lsp)
+					require("lspconfig")[lsp].setup {
+						capabilities = capabilities,
+					}
+				end,
+			}
+		end,
+	},
 }
