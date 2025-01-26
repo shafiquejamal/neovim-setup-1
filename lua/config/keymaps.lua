@@ -6,7 +6,12 @@
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 vim.keymap.set("i", "jj", "<Esc>")
 -- -- https://www.reddit.com/r/neovim/comments/16cso6u/how_to_keymap_cmd_s_in_lazy_nvim_to_save_file/?rdt=44443
--- vim.keymap.set({ "n", "i" }, "ww", "<cmd>update<cr><esc>", { desc = "Save file" })
+vim.keymap.set(
+	{ "n", "i" },
+	"ww",
+	"<cmd>update<cr><esc>",
+	{ desc = "Save file" }
+)
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
 
