@@ -1,5 +1,6 @@
 return {
 	"folke/persistence.nvim",
+	enabled = true, -- Set this to `false` if u want to disable this plugin.
 	init = function()
 		local nvim_sessions = vim.fn.stdpath "state" .. "/sessions/"
 		local tmux_sessions = vim.fn.expand "~/.local/share/tmux/resurrect/"
@@ -16,7 +17,7 @@ return {
 
 		if nvim_sessions_exists and tmux_sessions_exists and is_inside_tmux then
 			-- Restore neovim sessions
-			require("persistence").load()
+			vim.schedule(function() require("persistence").load() end)
 		end
 	end,
 	opts = {},
