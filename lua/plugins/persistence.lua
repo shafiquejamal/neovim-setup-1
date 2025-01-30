@@ -17,7 +17,7 @@ return {
 
 		if nvim_sessions_exists and tmux_sessions_exists and is_inside_tmux then
 			-- Restore neovim sessions
-			require("persistence").load()
+			vim.schedule(function() require("persistence").load() end)
 		end
 	end,
 	opts = {},
