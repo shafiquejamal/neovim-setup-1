@@ -1,5 +1,6 @@
 return {
 	"folke/persistence.nvim",
+	enabled = true, -- Set this to `false` if u want to disable this plugin.
 	init = function()
 		local nvim_sessions = vim.fn.stdpath "state" .. "/sessions/"
 		local tmux_sessions = vim.fn.expand "~/.local/share/tmux/resurrect/"
