@@ -61,7 +61,7 @@ vim.keymap.set(
 --
 --  See `:help wincmd` for a list of all window commands
 -- C-w + v/h for vertical/horizontal split
-vim.keymap.set(
+--[[ vim.keymap.set(
 	"n",
 	"<C-h>",
 	"<C-w><C-h>",
@@ -85,7 +85,7 @@ vim.keymap.set(
 	"<C-w><C-k>",
 	{ desc = "Move focus to the upper window" }
 )
-
+]]
 vim.keymap.set("n", "<C-n>", ":Neotree filesystem reveal left<CR>", {})
 
 -- delete without copying into register
