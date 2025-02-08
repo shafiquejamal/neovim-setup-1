@@ -22,21 +22,6 @@ vim.keymap.set(
 	vim.diagnostic.setloclist,
 	{ desc = "Open diagnostic [Q]uickfix list" }
 )
-vim.diagnostic.config {
-	update_in_insert = true,
-	float = {
-		max_width = 80,
-		max_height = 20,
-		wrap = true,
-		border = "rounded",
-	},
-	virtual_text = {
-		prefix = "●",
-		spacing = 4,
-		source = "always",
-		wrap = true,
-	},
-}
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
 -- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
 -- is not what someone will guess without a bit more experience.
