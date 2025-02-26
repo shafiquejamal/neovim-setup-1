@@ -33,6 +33,8 @@ return {
 			end,
 			formatters_by_ft = {
 				lua = { "stylua" },
+				go = { "goimports", "gofmt" },
+				rust = { "rustfmt", lsp_format = "fallback" },
 				javascript = { "prettierd", "prettier", "eslint_d" },
 				typescript = { "prettierd", "prettier", "eslint_d" },
 				javascriptreact = { "prettierd", "prettier", "eslint_d" },
