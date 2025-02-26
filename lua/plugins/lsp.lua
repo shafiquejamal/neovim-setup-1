@@ -40,6 +40,9 @@ return {
 					"shfmt",
 					"stylua",
 					"prettier",
+					"gofumpt",
+					"goimports",
+					"rustfmt",
 				},
 			}
 		end,
