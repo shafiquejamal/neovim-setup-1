@@ -35,6 +35,7 @@ return {
 					"eslint",
 					"tflint",
 					"shellcheck",
+					"checkstyle",
 
 					-- FORMATTERS
 					"shfmt",
@@ -43,6 +44,7 @@ return {
 					"gofumpt",
 					"goimports",
 					"rustfmt",
+					"google-java-format",
 				},
 			}
 		end,
