@@ -46,6 +46,7 @@ return {
 				yaml = { "prettierd", "prettier" },
 				markdown = { "prettierd", "prettier" },
 				graphql = { "prettierd", "prettier" },
+				java = { "google_java_format" },
 			},
 			stop_after_first = true, -- Ensures only the first formatter is used
 		},
