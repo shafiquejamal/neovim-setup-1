@@ -47,7 +47,9 @@ opt.timeoutlen = 300
 --  See `:help 'list'`
 --  and `:help 'listchars'`
 opt.list = true
-opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
+-- opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
+opt.listchars:append "tab:│ "
+opt.listchars:append "trail:␣"
 
 -- Preview substitutions live, as you type!
 opt.inccommand = "split"
