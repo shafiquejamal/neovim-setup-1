@@ -6,6 +6,7 @@ return {
 			sh = { "shellcheck" },
 			yaml = { "yamllint" },
 			python = { "pylint" },
+			java = { "checkstyle" },
 			terraform = { "tflint" },
 			javascript = { "eslint" },
 			typescript = { "eslint" },
