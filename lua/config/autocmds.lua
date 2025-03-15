@@ -53,7 +53,7 @@ vim.api.nvim_create_autocmd("LspDetach", {
 	callback = function(event)
 		vim.lsp.buf.clear_references()
 		vim.api.nvim_clear_autocmds {
-			group = "kickstart-lsp-highlight",
+			group = "shafiquejamal/LspDetach",
 			buffer = event.buf,
 		}
 	end,
