@@ -44,6 +44,7 @@ return {
 				html = { "prettierd", "prettier" },
 				json = { "prettierd", "prettier" },
 				yaml = { "prettierd", "prettier" },
+				terraform = { "terraform_fmt" },
 				markdown = { "prettierd", "prettier" },
 				graphql = { "prettierd", "prettier" },
 				java = { "google_java_format" },
