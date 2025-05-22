@@ -118,7 +118,7 @@ return {
 			vim.keymap.set(
 				"n",
 				"<leader>sg",
-				builtin.live_grep,
+				require "custom.telescope.live_grep",
 				{ desc = "[S]earch by [G]rep" }
 			)
 			vim.keymap.set(
