@@ -1,5 +1,8 @@
 local opt = vim.opt
 
+-- disable swapfiles
+vim.o.swapfile = false
+
 -- UI
 
 -- Make line numbers default
