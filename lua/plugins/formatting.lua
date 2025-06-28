@@ -45,6 +45,7 @@ return {
 				json = { "prettierd", "prettier" },
 				yaml = { "prettierd", "prettier" },
 				terraform = { "terraform_fmt" },
+				hcl = { "terragrunt_hclfmt", "packer_fmt" },
 				markdown = { "prettierd", "prettier" },
 				graphql = { "prettierd", "prettier" },
 				java = { "google_java_format" },
