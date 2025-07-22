@@ -33,7 +33,7 @@ opt.breakindent = true
 opt.undofile = true
 
 -- Case-insensitive searching UNLESS \C or one or more capital letters in the search term
-opt.ignorecase = true
+opt.ignorecase = false
 opt.smartcase = true
 
 -- Decrease update time
