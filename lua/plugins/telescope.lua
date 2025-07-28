@@ -117,6 +117,14 @@ return {
 				builtin.builtin,
 				{ desc = "[S]earch [S]elect Telescope" }
 			)
+
+			vim.keymap.set(
+				"n",
+				"<leader>wu",
+				builtin.lsp_references,
+				{ desc = "[W]here [U]sed" }
+			)
+
 			vim.keymap.set(
 				"n",
 				"<leader>sw",
