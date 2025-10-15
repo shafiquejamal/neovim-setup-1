@@ -78,6 +78,13 @@ return function(opts)
 			finder = custom_grep,
 			previewer = conf.grep_previewer(opts),
 			sorter = require("telescope.sorters").empty(),
+			layout_strategy = "vertical",
+			layout_config = {
+				preview_cutoff = 20,
+				prompt_position = "bottom",
+				height = 0.95,
+				width = 0.95,
+			},
 		})
 		:find()
 end
