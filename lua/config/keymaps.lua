@@ -86,3 +86,16 @@ vim.keymap.set(
 	function() return "pgv\"" .. vim.v.register .. "y" end,
 	{ remap = false, expr = true }
 )
+
+vim.keymap.set("n", "<leader>crp", function()
+	-- Get relative path of current buffer
+	local path = vim.fn.expand "%"
+	if path == "" then
+		vim.notify("No file path available", vim.log.levels.WARN)
+		return
+	end
+
+	-- Copy to clipboard
+	vim.fn.setreg("+", path)
+	vim.notify("Copied relative path: " .. path)
+end, { desc = "Copy relative file path to clipboard" })
