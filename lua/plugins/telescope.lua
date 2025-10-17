@@ -61,6 +61,18 @@ return {
 						},
 					},
 				},
+				defaults = {
+					dynamic_preview_title = true,
+					layout_strategy = "vertical",
+					layout_config = {
+						height = 0.95,
+						width = 0.95,
+						vertical = {
+							preview_cutoff = 20,
+							prompt_position = "bottom",
+						},
+					},
+				},
 				extensions = {
 					["ui-select"] = {
 						require("telescope.themes").get_dropdown(),
