@@ -88,14 +88,29 @@ vim.keymap.set(
 )
 
 vim.keymap.set("n", "<leader>crp", function()
-	-- Get relative path of current buffer
-	local path = vim.fn.expand "%"
-	if path == "" then
+	if vim.fn.expand "%" == "" then
 		vim.notify("No file path available", vim.log.levels.WARN)
 		return
 	end
 
-	-- Copy to clipboard
-	vim.fn.setreg("+", path)
-	vim.notify("Copied relative path: " .. path)
+	local root_markers = {
+		".git/",
+		".github/",
+		"README.md",
+		"LICENSE",
+	}
+
+	local current_buffer_path = vim.api.nvim_buf_get_name(0)
+	local root_marker = vim.fs.find(
+		root_markers,
+		{ upward = true, path = current_buffer_path }
+	)[1]
+
+	if root_marker then
+		local root_path = vim.fs.dirname(root_marker)
+		local relative_path = vim.fs.relpath(root_path, current_buffer_path)
+		-- Copy to clipboard
+		vim.fn.setreg("+", relative_path)
+		vim.notify("Copied relative path: " .. relative_path)
+	end
 end, { desc = "Copy relative file path to clipboard" })
