@@ -24,6 +24,7 @@ return {
 			require("mason-tool-installer").setup {
 				ensure_installed = {
 					-- LANGUAGE SERVERS
+					"nil", -- nix lsp
 					"sqlls",
 					"pyright",
 					"terraform-ls",
@@ -45,6 +46,7 @@ return {
 					"goimports",
 					"rustfmt",
 					"google-java-format",
+					"alejandra", -- nix formatter
 				},
 			}
 		end,
