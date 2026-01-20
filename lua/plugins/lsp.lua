@@ -61,6 +61,17 @@ return {
 		},
 		event = { "BufReadPost", "BufWritePost", "BufNewFile" },
 		config = function()
+			local lsp_settings = {
+				rust_analyzer = {
+					["rust-analyzer"] = {
+						imports = {
+							granularity = { group = "module" },
+							prefix = "self",
+						},
+						completion = { autoimport = true },
+					},
+				},
+			}
 			require("mason-lspconfig").setup {
 				handlers = {
 					function(lsp)
@@ -72,6 +83,7 @@ return {
 							)
 						require("lspconfig")[lsp].setup {
 							capabilities = capabilities,
+							settings = lsp_settings[lsp] or {},
 						}
 					end,
 				},
