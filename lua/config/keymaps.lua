@@ -24,12 +24,7 @@ vim.keymap.set(
 	"<cmd>bufdo e!<CR>",
 	{ desc = "Reload all buffers from disk" }
 )
-vim.keymap.set(
-	"n",
-	"rlsp",
-	"<cmd>LspRestart<CR>",
-	{ desc = "Restart LSP" }
-)
+vim.keymap.set("n", "rlsp", "<cmd>LspRestart<CR>", { desc = "Restart LSP" })
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
 
