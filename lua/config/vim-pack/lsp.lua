@@ -23,6 +23,7 @@ require("mason-tool-installer").setup {
 		"rust-analyzer",
 		"lua-language-server",
 		"typescript-language-server",
+		"kotlin-language-server",
 
 		-- LINTERS
 		"eslint",
@@ -38,6 +39,7 @@ require("mason-tool-installer").setup {
 		"goimports",
 		"rustfmt",
 		"google-java-format",
+		"ktfmt",
 		"alejandra", -- nix formatter
 	},
 }

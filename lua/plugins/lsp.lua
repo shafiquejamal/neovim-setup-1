@@ -31,6 +31,7 @@ return {
 					"rust-analyzer",
 					"lua-language-server",
 					"typescript-language-server",
+					"kotlin-language-server",
 
 					-- LINTERS
 					"eslint",
@@ -46,6 +47,7 @@ return {
 					"goimports",
 					"rustfmt",
 					"google-java-format",
+					"ktfmt",
 					"alejandra", -- nix formatter
 				},
 			}

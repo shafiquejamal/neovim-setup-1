@@ -22,6 +22,9 @@ return {
 				"vimdoc",
 				"java",
 				"xml",
+				"kotlin",
+				"json",
+				"toml",
 			},
 			-- Autoinstall languages that are not installed
 			auto_install = true,

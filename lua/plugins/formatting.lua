@@ -45,6 +45,7 @@ return { -- Autoformat
 			markdown = { "prettierd", "prettier" },
 			graphql = { "prettierd", "prettier" },
 			java = { "google_java_format" },
+			kotlin = { "ktfmt" },
 			nix = { "alejandra" },
 		},
 		stop_after_first = true, -- Ensures only the first formatter is used
