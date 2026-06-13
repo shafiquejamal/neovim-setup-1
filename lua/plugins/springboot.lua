@@ -1,6 +1,7 @@
 return {
 	"nvim-java/nvim-java",
 	dependencies = {
+		"mfussenegger/nvim-dap",
 		"nvim-java/nvim-java-dap",
 		"nvim-java/nvim-java-core",
 		"nvim-java/nvim-java-test",
@@ -20,5 +21,16 @@ return {
 			"build.gradle.kts",
 		}, { upward = true, limit = 1 }) == 0
 	end,
-	config = true,
+	config = function()
+		require("custom.java.refactor_compat").ensure_setup_module()
+
+		require("java").setup {
+			java_debug_adapter = {
+				enable = true,
+			},
+			jdk = {
+				auto_install = false,
+			},
+		}
+	end,
 }

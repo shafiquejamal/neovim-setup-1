@@ -11,6 +11,8 @@ local function is_java_project()
 end
 
 if is_java_project() then
+	require("custom.java.refactor_compat").ensure_setup_module()
+
 	local remote_url = "https://github.com/"
 	vim.pack.add {
 		{ src = remote_url .. "nvim-java/nvim-java" },
@@ -56,7 +58,7 @@ if is_java_project() then
 
 		-- JDK installation
 		jdk = {
-			auto_install = true,
+			auto_install = false,
 			version = "17",
 		},
 

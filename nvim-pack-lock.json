@@ -90,6 +90,30 @@
       "rev": "a1d504892f2bc56c2e79b65c6faded2fd21f3eca",
       "src": "https://github.com/hrsh7th/nvim-cmp"
     },
+    "nvim-dap": {
+      "rev": "531771530d4f82ad2d21e436e3cc052d68d7aebb",
+      "src": "https://github.com/mfussenegger/nvim-dap"
+    },
+    "nvim-java": {
+      "rev": "f36a376dfebbbb4cf382008ea6e8b70d40049112",
+      "src": "https://github.com/nvim-java/nvim-java"
+    },
+    "nvim-java-core": {
+      "rev": "229ebcdfa33c75cf746f97c46c2893b2de3626e5",
+      "src": "https://github.com/nvim-java/nvim-java-core"
+    },
+    "nvim-java-dap": {
+      "rev": "55f239532f7a3789d21ea68d1e795abc77484974",
+      "src": "https://github.com/nvim-java/nvim-java-dap"
+    },
+    "nvim-java-refactor": {
+      "rev": "b51a57d862338999059e1d1717df3bc80a3a15c0",
+      "src": "https://github.com/nvim-java/nvim-java-refactor"
+    },
+    "nvim-java-test": {
+      "rev": "7f0f40e9c5b7eab5096d8bec6ac04251c6e81468",
+      "src": "https://github.com/nvim-java/nvim-java-test"
+    },
     "nvim-lint": {
       "rev": "eab58b48eb11d7745c11c505e0f3057165902461",
       "src": "https://github.com/mfussenegger/nvim-lint"
@@ -134,6 +158,10 @@
     "snacks.nvim": {
       "rev": "ad9ede6a9cddf16cedbd31b8932d6dcdee9b716e",
       "src": "https://github.com/folke/snacks.nvim"
+    },
+    "spring-boot.nvim": {
+      "rev": "98c6ff1dcdda943d341bba3c00ae9d190a2e5f7d",
+      "src": "https://github.com/JavaHello/spring-boot.nvim"
     },
     "telescope-fzf-native.nvim": {
       "rev": "6fea601bd2b694c6f2ae08a6c6fab14930c60e2c",
