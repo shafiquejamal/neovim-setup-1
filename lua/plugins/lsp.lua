@@ -62,9 +62,9 @@ return {
 		},
 		event = { "BufReadPost", "BufWritePost", "BufNewFile" },
 		config = function()
-			local lspconfig = require("lspconfig")
-			local configs = require("lspconfig.configs")
-			local util = require("lspconfig.util")
+			local lspconfig = require "lspconfig"
+			local configs = require "lspconfig.configs"
+			local util = require "lspconfig.util"
 
 			local function make_capabilities()
 				return require("cmp_nvim_lsp").default_capabilities(

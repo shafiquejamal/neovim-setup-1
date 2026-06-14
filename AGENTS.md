@@ -32,10 +32,13 @@ This repository contains a personal Neovim configuration rooted at `init.lua`.
 - If you change plugin behavior, update the active codepath for the Neovim version in use instead of editing unrelated duplicate files.
 - When a plugin exists in both `lua/plugins/` and `lua/config/vim-pack/`, check whether the same behavior must be updated in both places.
 - Match the existing Lua style in the touched file; this repo uses tabs in many Lua files.
+- Follow `stylua.toml` when editing Lua. In particular, `call_parentheses = "None"`, so simple calls like `require` should use `require "module"` instead of `require("module")`.
 - Prefer direct Neovim APIs and existing patterns over adding new abstraction layers.
 
 ## Validation
 
+- After changing any Lua file, run a local Stylua check before finishing or pushing:
+  - `nix shell nixpkgs#stylua -c stylua --check init.lua lua`
 - For Lua syntax or startup regressions, use headless Neovim against this config, for example:
   - `nvim --headless '+qa'`
 - If you changed plugin bootstrap or plugin declarations, also verify the relevant manager path loads cleanly in the Neovim version being targeted.
