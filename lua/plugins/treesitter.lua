@@ -25,9 +25,9 @@ return {
 				"kotlin",
 				"json",
 				"toml",
-			"terraform",
-			"hcl",
-		},
+				"terraform",
+				"hcl",
+			},
 			-- Autoinstall languages that are not installed
 			auto_install = true,
 			highlight = {
