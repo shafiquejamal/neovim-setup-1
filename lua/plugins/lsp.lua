@@ -35,7 +35,6 @@ return {
 
 					-- LINTERS
 					"eslint",
-					"tflint",
 					"shellcheck",
 					"checkstyle",
 

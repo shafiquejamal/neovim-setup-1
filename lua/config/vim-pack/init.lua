@@ -1,4 +1,4 @@
-require "config/vim-pack/fugitive"
+-- require "config/vim-pack/fugitive"
 require "config/vim-pack/whichkey"
 require "config/vim-pack/completion"
 require "config/vim-pack/filetree"

@@ -21,24 +21,10 @@ local function make_capabilities()
 	)
 end
 
--- terraform-ls hangs on modules that have not had `terraform init` run,
--- because it tries to resolve providers on startup. We exclude it from
--- mason-lspconfig's automatic_enable and start it manually only when a
--- .terraform directory exists, indicating the module has been initialized.
-vim.api.nvim_create_autocmd("FileType", {
-	pattern = { "terraform", "terraform-vars" },
-	callback = function(ev)
-		local root = vim.fs.root(ev.buf, { ".terraform", ".git" })
-		if root == nil then return end
-		if not vim.uv.fs_stat(root .. "/.terraform") then return end
-		vim.lsp.start {
-			name = "terraformls",
-			cmd = { "terraform-ls", "serve" },
-			root_dir = root,
-			capabilities = make_capabilities(),
-		}
-	end,
-})
+-- Note: terraformls root_markers is overridden in lsp/terraformls.lua to
+-- require a .terraform directory, preventing it from starting on uninitialized
+-- modules. It is also excluded from mason-lspconfig automatic_enable below
+-- as a belt-and-suspenders measure.
 
 require("mason-tool-installer").setup {
 	run_on_start = true,

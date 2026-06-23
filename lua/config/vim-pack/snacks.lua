@@ -4,7 +4,11 @@ local ok, snacks = pcall(require, "snacks")
 if not ok then return end
 
 snacks.setup {
-	indent = {},
+	indent = {
+		-- Disabled for terraform/hcl: scanning long lines for indent guides
+		-- causes a str_utfindex freeze on larger files.
+		enabled = false,
+	},
 	lazygit = {},
 	quickfile = {},
 }
