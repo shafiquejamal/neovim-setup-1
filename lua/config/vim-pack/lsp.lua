@@ -1,4 +1,5 @@
 local remote_url = "https://github.com/"
+local has_nix = vim.fn.executable "nix" == 1
 
 vim.pack.add {
 	remote_url .. "williamboman/mason.nvim",
@@ -20,23 +21,44 @@ local function make_capabilities()
 	)
 end
 
+-- terraform-ls hangs on modules that have not had `terraform init` run,
+-- because it tries to resolve providers on startup. We exclude it from
+-- mason-lspconfig's automatic_enable and start it manually only when a
+-- .terraform directory exists, indicating the module has been initialized.
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = { "terraform", "terraform-vars" },
+	callback = function(ev)
+		local root = vim.fs.root(ev.buf, { ".terraform", ".git" })
+		if root == nil then return end
+		if not vim.uv.fs_stat(root .. "/.terraform") then return end
+		vim.lsp.start {
+			name = "terraformls",
+			cmd = { "terraform-ls", "serve" },
+			root_dir = root,
+			capabilities = make_capabilities(),
+		}
+	end,
+})
+
 require("mason-tool-installer").setup {
 	run_on_start = true,
 	start_delay = 3000,
 	integrations = { ["mason-lspconfig"] = true },
 	ensure_installed = {
 		-- LANGUAGE SERVERS
-		"nil", -- nix lsp
+		has_nix and "nil" or nil, -- nix lsp
 		"sqlls",
 		"pyright",
 		"terraform-ls",
 		"rust-analyzer",
 		"lua-language-server",
 		"typescript-language-server",
+		-- tflint intentionally omitted: it hangs as an LSP server on terraform
+		-- modules without `terraform init`. tflint is not used as a CLI linter
+		-- here either, since terraform-ls already provides diagnostics.
 
 		-- LINTERS
 		"eslint",
-		"tflint",
 		"shellcheck",
 		"checkstyle",
 
@@ -49,7 +71,7 @@ require("mason-tool-installer").setup {
 		"rustfmt",
 		"google-java-format",
 		"ktfmt",
-		"alejandra", -- nix formatter
+		has_nix and "alejandra" or nil, -- nix formatter
 	},
 }
 
@@ -66,6 +88,13 @@ local lsp_settings = {
 }
 
 require("mason-lspconfig").setup {
+	-- tflint and terraformls are excluded from automatic_enable:
+	-- - tflint hangs as an LSP server on uninitialized terraform modules.
+	-- - terraformls is started manually via the FileType autocmd above,
+	--   only when a .terraform directory exists.
+	automatic_enable = {
+		exclude = { "tflint", "terraformls" },
+	},
 	handlers = {
 		function(lsp)
 			lspconfig[lsp].setup {

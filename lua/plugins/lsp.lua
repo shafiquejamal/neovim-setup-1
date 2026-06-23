@@ -21,16 +21,17 @@ return {
 		build = ":MasonToolsUpdate",
 		cmd = { "MasonToolsInstall", "MasonToolsUpdate", "MasonToolsClean" },
 		config = function()
+			local has_nix = vim.fn.executable "nix" == 1
 			require("mason-tool-installer").setup {
 				ensure_installed = {
 					-- LANGUAGE SERVERS
-					"nil", -- nix lsp
 					"sqlls",
 					"pyright",
 					"terraform-ls",
 					"rust-analyzer",
 					"lua-language-server",
 					"typescript-language-server",
+					has_nix and "nil" or nil, -- nix lsp
 
 					-- LINTERS
 					"eslint",
@@ -47,7 +48,7 @@ return {
 					"rustfmt",
 					"google-java-format",
 					"ktfmt",
-					"alejandra", -- nix formatter
+					has_nix and "alejandra" or nil, -- nix formatter
 				},
 			}
 		end,

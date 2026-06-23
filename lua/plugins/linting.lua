@@ -7,7 +7,8 @@ return {
 			yaml = { "yamllint" },
 			python = { "pylint" },
 			java = { "checkstyle" },
-			terraform = { "tflint" },
+			-- tflint omitted: hangs as an LSP server on terraform modules without
+			-- `terraform init`. Diagnostics are provided by terraform-ls instead.
 			javascript = { "eslint" },
 			typescript = { "eslint" },
 			javascriptreact = { "eslint" },

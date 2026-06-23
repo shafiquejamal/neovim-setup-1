@@ -29,8 +29,16 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		keymap("<C-k>", vim.lsp.buf.signature_help, "Signature Documentation")
 
 		-- highlight LSP References
+		-- Disabled for terraform/hcl: terraform-ls returns so many highlight
+		-- ranges that the UTF offset conversion freezes Neovim on larger files.
 		local client = vim.lsp.get_client_by_id(event.data.client_id)
-		if client and client.server_capabilities.documentHighlightProvider then
+		local ft = vim.bo[event.buf].filetype
+		local skip_highlight_fts = { terraform = true, hcl = true }
+		if
+			client
+			and client.server_capabilities.documentHighlightProvider
+			and not skip_highlight_fts[ft]
+		then
 			vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
 				buffer = event.buf,
 				callback = vim.lsp.buf.document_highlight,

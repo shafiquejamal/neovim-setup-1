@@ -9,7 +9,8 @@ lint.linters_by_ft = {
 	yaml = { "yamllint" },
 	python = { "pylint" },
 	java = { "checkstyle" },
-	terraform = { "tflint" },
+	-- tflint removed: it hangs as both an LSP server and CLI linter on terraform
+	-- modules without `terraform init`. Diagnostics are provided by terraform-ls.
 	javascript = { "eslint" },
 	typescript = { "eslint" },
 	javascriptreact = { "eslint" },

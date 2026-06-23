@@ -26,7 +26,12 @@ treesitter.setup {
 		"kotlin",
 		"json",
 		"toml",
+		"terraform",
+		"hcl",
 	},
-	highlight = { enable = true },
+	highlight = {
+		enable = true,
+		disable = { "terraform", "hcl" },
+	},
 	indent = { enable = true, disable = { "python", "html" } },
 }
